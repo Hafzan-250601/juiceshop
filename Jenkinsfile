@@ -8,7 +8,7 @@ pipeline {
         '''
       }
     }
-    stage('Scan image and upload findings to SecurityHub') {
+    stage('Scan image using Trivy') {
       steps {
         sh '''
         trivy image --no-progress --severity HIGH,CRITICAL bkimminich/juice-shop
