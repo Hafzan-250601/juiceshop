@@ -4,7 +4,6 @@ pipeline {
     stage('Build') {
       steps {
         sh '''
-        cd juiceshop
         docker build -t juiceshop .
         '''
       }
