@@ -8,6 +8,7 @@ pipeline {
         ls -a
         cd ..
         ls -a
+        pwd
         '''
       }
     }
