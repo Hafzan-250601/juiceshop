@@ -28,9 +28,6 @@ RUN rm -rf node_modules/libxmljs/build && \
   cd node_modules/libxmljs && \
   npm run build
 
-# Add in the Contrast agent
-RUN npm install --production @contrast/agent
-
 FROM gcr.io/distroless/nodejs20-debian11
 ARG BUILD_DATE
 ARG VCS_REF
@@ -51,4 +48,4 @@ COPY --from=installer --chown=65532:0 /juice-shop .
 COPY --chown=65532:0 --from=libxmljs-builder /juice-shop/node_modules/libxmljs ./node_modules/libxmljs
 USER 65532
 EXPOSE 3000
-CMD ["/juice-shop/build/app.js", "node", "-r", "@contrast/agent", "build/app"]
+CMD ["/juice-shop/build/app.js"]
