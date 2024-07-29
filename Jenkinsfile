@@ -6,6 +6,8 @@ pipeline {
         sh '''
         docker pull bkimminich/juice-shop
         ls -a
+        cd ..
+        ls -a
         '''
       }
     }
