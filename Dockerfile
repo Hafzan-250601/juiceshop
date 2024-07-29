@@ -15,9 +15,6 @@ RUN rm data/chatbot/botDefaultTrainingData.json || true
 RUN rm ftp/legal.md || true
 RUN rm i18n/*.json || true
 
-# Add in the Contrast agent
-RUN npm install --production @contrast/agent
-
 ARG CYCLONEDX_NPM_VERSION=latest
 RUN npm install -g @cyclonedx/cyclonedx-npm@$CYCLONEDX_NPM_VERSION
 RUN npm run sbom
@@ -30,6 +27,9 @@ COPY --from=installer /juice-shop/node_modules ./node_modules
 RUN rm -rf node_modules/libxmljs/build && \
   cd node_modules/libxmljs && \
   npm run build
+
+# Add in the Contrast agent
+RUN npm install --production @contrast/agent
 
 FROM gcr.io/distroless/nodejs20-debian11
 ARG BUILD_DATE
