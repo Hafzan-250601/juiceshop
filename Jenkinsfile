@@ -4,7 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         sh '''
-        docker build -t juiceshop .
+        docker pull bkimminich/juice-shop
         ls -a
         '''
       }
