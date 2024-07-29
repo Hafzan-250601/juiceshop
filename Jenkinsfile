@@ -8,6 +8,7 @@ pipeline {
         docker build -t juiceshop .
         '''
       }
+    }
     stage('Scan image and upload findings to SecurityHub') {
       steps {
         sh '''
@@ -17,7 +18,6 @@ pipeline {
         aws securityhub batch-import-findings --findings file://report.asff
         '''
       }
-    }
     }
   }
 }
