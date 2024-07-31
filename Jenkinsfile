@@ -4,14 +4,14 @@ pipeline {
     stage('Build') {
       steps {
         sh '''
-        docker pull bkimminich/juice-shop
+        docker build -t juice-shop .
         '''
       }
     }
     stage('Scan image using Trivy') {
       steps {
         sh '''
-        trivy image --no-progress --severity HIGH,CRITICAL bkimminich/juice-shop
+        trivy image --no-progress --severity HIGH,CRITICAL juice-shop
         '''
       }
     }
