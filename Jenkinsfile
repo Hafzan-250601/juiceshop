@@ -4,15 +4,24 @@ pipeline {
     stage('Build') {
       steps {
         sh '''
-        docker build -t juiceshop .
+        docker pull bkimminich/juice-shop
         '''
       }
     }
     stage('Scan image using Trivy') {
       steps {
         sh '''
-        trivy image --no-progress --severity HIGH,CRITICAL juiceshop
+        trivy image --no-progress --severity HIGH,CRITICAL bkimminich/juice-shop
         '''
+      }
+    }
+    stage('Scan image using Snyk') {
+      steps {
+        echo 'Testing...'
+        snykSecurity(
+          snykInstallation: 'SnykImageScanning',
+          snykTokenId: 'organization-snyk-api-token'
+        )
       }
     }
   }
