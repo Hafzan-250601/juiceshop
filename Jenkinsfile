@@ -8,7 +8,6 @@ pipeline {
         '''
       }
     }
-  stages {
     stage('Start the built docker images') {
       steps {
         sh '''
@@ -31,5 +30,4 @@ pipeline {
       }
     }
   }
-}
 }
