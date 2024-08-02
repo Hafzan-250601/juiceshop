@@ -4,7 +4,7 @@ FROM bkimminich/juice-shop
 WORKDIR /juice-shop
 
 #Install python
-RUN apt-get install python3 python3-pip
+# RUN apt-get install python3 python3-pip
 
 # Add in the Contrast agent
 RUN npm install --production @contrast/agent
