@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Build') {
+    stage('Build and install Contrast Assess Agent') {
       steps {
         sh '''
         docker build -t juice-shop .
@@ -17,11 +17,9 @@ pipeline {
     }
     stage('Scan image using Snyk') {
       steps {
-        echo 'Testing...'
-        snykSecurity(
-          snykInstallation: 'SnykImageScanning',
-          snykTokenId: 'organization-snyk-api-token'
-        )
+        sh '''
+        snyk-linux container monitor juice-shop --org=27b08c82-2fb9-4856-9b83-d2fcc25dcd66
+        '''
       }
     }
   }
